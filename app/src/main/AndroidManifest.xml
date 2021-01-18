@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.redesaplication">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pruebas1">
-        <activity android:name=".Registrar"/>
+        <activity
+            android:name=".menu_inicio"
+            android:label="@string/title_activity_menu_inicio"
+            android:theme="@style/Theme.Pruebas1.NoActionBar"></activity>
+        <activity android:name=".Registrar" />
         <activity android:name=".Acceder" />
         <activity android:name=".MainActivity">
             <intent-filter>

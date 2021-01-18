@@ -39,31 +39,28 @@
 
         <Button
             android:id="@+id/btnSignUp"
-            android:text="Registrarse"
-            android:textColor="@color/white"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:shadowColor="@color/black"
             android:layout_margin="8dp"
-            android:backgroundTint="@color/btnSignUp"
-
-
-            tools:targetApi="lollipop" />
+            android:layout_weight="1"
+            android:shadowColor="@color/black"
+            android:text="Registrarse"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/btnSignUp"
+            />
 
         <Button
             android:id="@+id/btnSignIn"
-            android:text="Acceder"
-            android:textColor="@color/white"
-            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:shadowColor="@color/black"
             android:layout_margin="8dp"
+            android:layout_weight="1"
             android:backgroundTint="@color/btnSignActive"
+            android:shadowColor="@color/black"
+            android:text="Acceder"
+            android:textColor="@color/white"
 
-
-            />
+             />
     </LinearLayout>
 
 </RelativeLayout>

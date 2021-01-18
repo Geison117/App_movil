@@ -2,14 +2,17 @@ package com.example.redesaplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.ShowableListMenu;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.redesaplication.Common.Common;
 import com.example.redesaplication.Models.Usuario;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -51,6 +54,10 @@ public class Acceder extends AppCompatActivity {
                             // Consigue la información del usuario
                             Usuario usuario = snapshot.child(edtPhone.getText().toString()).getValue(Usuario.class);
                             if (usuario.getContrasena().equals(edtPassword.getText().toString())) {
+                                Intent inicio = new Intent(Acceder.this, menu_inicio.class);
+                                Common.usuario = usuario;
+                                startActivity(inicio);
+                                finish();
                                 Toast.makeText(Acceder.this, "Acceso exitoso", Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(Acceder.this, "Contraseña errónea", Toast.LENGTH_SHORT).show();
