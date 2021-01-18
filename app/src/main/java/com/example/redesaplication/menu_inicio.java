@@ -1,5 +1,6 @@
 package com.example.redesaplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -39,13 +40,12 @@ public class menu_inicio extends AppCompatActivity {
     TextView tvNombre;
     RecyclerView recyclerMenu;
     RecyclerView.LayoutManager layoutManager;
+    FirebaseRecyclerAdapter<Categoria, MenuViewHolder> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_inicio);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Menú");
-        setTitle("Menú");
 
 
         database = FirebaseDatabase.getInstance();
@@ -82,10 +82,12 @@ public class menu_inicio extends AppCompatActivity {
 
         loadMenu();
 
+        toolbar.setTitle("Menú");
+        setTitle("Menú");
     }
 
     private void loadMenu() {
-        FirebaseRecyclerAdapter<Categoria, MenuViewHolder> adapter = new FirebaseRecyclerAdapter<Categoria, MenuViewHolder>(Categoria.class, R.layout.menu_item, MenuViewHolder.class, categoria) {
+         adapter = new FirebaseRecyclerAdapter<Categoria, MenuViewHolder>(Categoria.class, R.layout.menu_item, MenuViewHolder.class, categoria) {
             @Override
             protected void populateViewHolder(MenuViewHolder menuViewHolder, Categoria categoria, int i) {
                 menuViewHolder.txtMenuName.setText(categoria.getNombre());
@@ -94,7 +96,9 @@ public class menu_inicio extends AppCompatActivity {
                 menuViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(menu_inicio.this, "" + clickItem.getNombre(), Toast.LENGTH_SHORT).show();
+                        Intent foodList = new Intent(menu_inicio.this, menu_comidas.class);
+                        foodList.putExtra("idCategoria", adapter.getRef(position).getKey());
+                        startActivity(foodList);
                     }
                 });
             }
