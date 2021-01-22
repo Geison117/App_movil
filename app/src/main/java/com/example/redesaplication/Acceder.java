@@ -53,6 +53,7 @@ public class Acceder extends AppCompatActivity {
                         if(snapshot.child(edtPhone.getText().toString()).exists()) {
                             // Consigue la información del usuario
                             Usuario usuario = snapshot.child(edtPhone.getText().toString()).getValue(Usuario.class);
+                            usuario.setTelefono(edtPhone.getText().toString());
                             if (usuario.getContrasena().equals(edtPassword.getText().toString())) {
                                 Intent inicio = new Intent(Acceder.this, menu_inicio.class);
                                 Common.usuario = usuario;

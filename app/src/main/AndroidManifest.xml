@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pruebas1"
         tools:replace="android:theme">
-        <activity android:name=".DescripcionComida"></activity>
+        <activity android:name=".Canasta"></activity>
+        <activity android:name=".DescripcionComida" />
         <activity android:name=".menu_comidas" />
         <activity
             android:name=".menu_inicio"

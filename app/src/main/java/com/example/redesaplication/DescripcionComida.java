@@ -4,11 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.redesaplication.Database.Database;
 import com.example.redesaplication.Models.Comida;
+import com.example.redesaplication.Models.Order;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +31,9 @@ public class DescripcionComida extends AppCompatActivity {
     FloatingActionButton btnCart;
     ElegantNumberButton numberButton;
     String foodId = "";
+    Toolbar toolbar;
+
+    Comida comida;
 
     FirebaseDatabase database;
     DatabaseReference foods;
@@ -40,10 +48,25 @@ public class DescripcionComida extends AppCompatActivity {
         numberButton = (ElegantNumberButton) findViewById(R.id.number_button);
         btnCart = (FloatingActionButton) findViewById(R.id.btnCart);
 
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Database(getBaseContext()).addToCart(new Order(
+                    foodId, comida.getNombre(),
+                    numberButton.getNumber(),
+                    comida.getPrecio()
+                    ));
+
+                Toast.makeText(DescripcionComida.this, "Añadido a la canasta", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         food_description = (TextView) findViewById(R.id.food_description);
         foodName = (TextView) findViewById(R.id.food_name);
         foodPrice = (TextView) findViewById(R.id.food_price);
         food_image = (ImageView) findViewById(R.id.img_food);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppbar);
@@ -61,10 +84,11 @@ public class DescripcionComida extends AppCompatActivity {
         foods.child(foodId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Comida comida = snapshot.getValue(Comida.class);
+                comida = snapshot.getValue(Comida.class);
 
                 Picasso.get().load(comida.getImagen()).into(food_image);
                 collapsingToolbarLayout.setTitle(comida.getNombre());
+                toolbar.setTitle(comida.getNombre());
                 foodPrice.setText(comida.getPrecio());
 
                 foodName.setText(comida.getNombre());

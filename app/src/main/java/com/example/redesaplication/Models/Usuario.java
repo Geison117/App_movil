@@ -3,13 +3,22 @@ package com.example.redesaplication.Models;
 public class Usuario {
     private String Nombre;
     private String Contrasena;
+    private String telefono;
 
     public Usuario() {
     }
 
     public Usuario(String nombre, String contrasena) {
-        this.Nombre = nombre;
-        this.Contrasena = contrasena;
+        Nombre = nombre;
+        Contrasena = contrasena;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getNombre() {

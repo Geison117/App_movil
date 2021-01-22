@@ -27,7 +27,6 @@
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">normal</item>
-
     </style>
 
     <style name="ExpandedAppbar" parent="TextAppearance.AppCompat.Title">
