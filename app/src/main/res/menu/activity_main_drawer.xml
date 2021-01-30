@@ -9,7 +9,6 @@
             android:icon="@drawable/ic_baseline_fastfood_24"
             android:title="Menú"
             android:iconTint="@color/white"
-
             />
 
         <item

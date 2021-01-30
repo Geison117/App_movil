@@ -2,6 +2,7 @@ package com.example.redesaplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import com.example.redesaplication.Common.Common;
 import com.example.redesaplication.Interface.ItemClickListener;
 import com.example.redesaplication.Models.Categoria;
+import com.example.redesaplication.Models.Order;
 import com.example.redesaplication.ViewHolder.MenuViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -31,7 +34,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Locale;
 
-public class menu_inicio extends AppCompatActivity {
+public class menu_inicio extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -47,7 +50,6 @@ public class menu_inicio extends AppCompatActivity {
         setContentView(R.layout.activity_menu_inicio);
         Toolbar toolbar = findViewById(R.id.toolbar);
 
-
         database = FirebaseDatabase.getInstance();
         categoria = database.getReference("Categoria");
         setSupportActionBar(toolbar);
@@ -61,6 +63,7 @@ public class menu_inicio extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -84,6 +87,7 @@ public class menu_inicio extends AppCompatActivity {
 
         toolbar.setTitle("Menú");
         setTitle("Menú");
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     private void loadMenu() {
@@ -110,6 +114,7 @@ public class menu_inicio extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_inicio, menu);
+
         return true;
     }
 
@@ -118,5 +123,30 @@ public class menu_inicio extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.nav_menu)
+        {
+
+        }
+        else if (id == R.id.nav_cart){
+            Intent intent = new Intent(menu_inicio.this, Canasta.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_orders){
+            Intent intent = new Intent(menu_inicio.this, OrderStatus.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_salir){
+            Intent intent = new Intent(menu_inicio.this, Acceder.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+        return true;
     }
 }

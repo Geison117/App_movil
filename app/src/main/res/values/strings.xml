@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pruebas1</string>
+    <string name="app_name">CatRepart</string>
     <string name="slogan">Es simple, sólo ordena tu comida preferida y llegará directo a tu hogar para compartir con tus seres queridos</string>
     <string name="title_activity_menu_inicio">menu_inicio</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

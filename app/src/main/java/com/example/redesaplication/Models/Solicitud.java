@@ -7,7 +7,11 @@ public class Solicitud {
     private String nombre;
     private String direccion;
     private String total;
+    private String status;
     private List<Order> comidas;
+
+    public Solicitud() {
+    }
 
     public Solicitud(String telefono, String nombre, String direccion, String total, List<Order> comidas) {
         this.telefono = telefono;
@@ -15,6 +19,15 @@ public class Solicitud {
         this.direccion = direccion;
         this.total = total;
         this.comidas = comidas;
+        this.status = "0";
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getTelefono() {

@@ -40,6 +40,7 @@ public class Canasta extends AppCompatActivity {
 
     List<Order> cart = new ArrayList<>();
     CartAdapter adapter;
+    int total = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,24 +80,24 @@ public class Canasta extends AppCompatActivity {
         alertDialog.setView(edtAdress);
         alertDialog.setIcon(R.drawable.ic_baseline_shopping_cart_24);
 
-        alertDialog.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Solicitud solicitud = new Solicitud(
                         Common.usuario.getTelefono(),
                         Common.usuario.getNombre(),
                         edtAdress.getText().toString(),
-                        txtTotalPrice.getText().toString(),
+                        String.valueOf(total),
                         cart
                 );
                 request.child(String.valueOf(System.currentTimeMillis())).setValue(solicitud);
                 new Database(getBaseContext()).cleanCart();
-                Toast.makeText(Canasta.this, "Gracias por su orden", Toast.LENGTH_SHORT);
+                Toast.makeText(Canasta.this, "Gracias por su orden", Toast.LENGTH_SHORT).show();
                 finish();
              }
         });
 
-        alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -112,12 +113,11 @@ public class Canasta extends AppCompatActivity {
 
         recyclerView.setAdapter(adapter);
 
-        int total = 0;
 
         for (Order order:cart){
             total += (Integer.parseInt(order.getPrecio()))*(Integer.parseInt(order.getCantidad()));
         }
-        Locale locale = new Locale("en", "US");
+        Locale locale = new Locale("es", "CO");
         NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
         txtTotalPrice.setText(fmt.format(total));
     }
