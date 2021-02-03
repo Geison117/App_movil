@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,11 +16,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.example.redesaplication.Common.Common;
 import com.example.redesaplication.Database.Database;
 import com.example.redesaplication.Models.Order;
 import com.example.redesaplication.Models.Solicitud;
 import com.example.redesaplication.ViewHolder.CartAdapter;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -57,13 +60,19 @@ public class Canasta extends AppCompatActivity {
         txtTotalPrice  = (TextView) findViewById(R.id.total);
         btnPlace = (Button) findViewById(R.id.btnPlaceOrder);
 
+        cargarLista();
+
         btnPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showAlertDialog();
+                if (total > 0){
+                    showAlertDialog();
+                }
+                else{
+                    Toast.makeText(Canasta.this, "Aun no tiene ningún item en la lista", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-        cargarLista();
     }
 
     private void showAlertDialog() {
@@ -112,7 +121,6 @@ public class Canasta extends AppCompatActivity {
         adapter = new CartAdapter(cart, this);
 
         recyclerView.setAdapter(adapter);
-
 
         for (Order order:cart){
             total += (Integer.parseInt(order.getPrecio()))*(Integer.parseInt(order.getCantidad()));

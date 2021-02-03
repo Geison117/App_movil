@@ -49,16 +49,30 @@ public class Registrar extends AppCompatActivity {
                 table_user.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.child(edtPhone.getText().toString()).exists()){
-                            dialogo.dismiss();
-                            Toast.makeText(Registrar.this, "El número de teléfono ya está registrado", Toast.LENGTH_SHORT).show();
+                        if (!edtPhone.getText().toString().isEmpty())
+                        {
+                            if (snapshot.child(edtPhone.getText().toString()).exists()){
+                                dialogo.dismiss();
+                                Toast.makeText(Registrar.this, "El número de teléfono ya está registrado", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                if (!edtContrasena.getText().toString().isEmpty() && !edtNombre.getText().toString().isEmpty()){
+                                    dialogo.dismiss();
+                                    Usuario usuario = new Usuario(edtNombre.getText().toString(), edtContrasena.getText().toString());
+                                    table_user.child(edtPhone.getText().toString()).setValue(usuario);
+                                    Toast.makeText(Registrar.this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                                else{
+                                    dialogo.dismiss();
+                                    Toast.makeText(Registrar.this, "Debe llenar todos los campos", Toast.LENGTH_SHORT).show();
+                                }
+                            }
                         }
-                        else{
+                        else
+                        {
                             dialogo.dismiss();
-                            Usuario usuario = new Usuario(edtNombre.getText().toString(), edtContrasena.getText().toString());
-                            table_user.child(edtPhone.getText().toString()).setValue(usuario);
-                            Toast.makeText(Registrar.this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
-                            finish();
+                            Toast.makeText(Registrar.this, "Ingrese un teléfono", Toast.LENGTH_SHORT).show();
                         }
                     }
 

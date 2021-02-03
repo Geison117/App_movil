@@ -7,10 +7,17 @@
     tools:context=".OrderStatus"
     android:background="@drawable/background">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listOrders"
-        android:background="@color/transparente"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listOrders"
+            android:background="@color/transparente"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 </RelativeLayout>

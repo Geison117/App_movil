@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="2dip"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="¿Desea calficar la app?"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Da una calificación del servicio tomando los gatos amarillos como puntaje de 0 a 5"
+        android:textAlignment="center"
+        android:textSize="18sp"/>
+
+    <RatingBar
+        style="@style/MyRatingBar"
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:numStars="5"
+        android:rating="5"
+        />
+    <Button
+        android:id="@+id/btn_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enviar Rating"
+        />
+
+</LinearLayout>
+

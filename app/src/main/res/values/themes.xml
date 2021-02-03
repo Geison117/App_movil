@@ -34,4 +34,12 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="MyRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:minHeight">50dip</item>
+        <item name="android:maxHeight">52dip</item>
+        <item name="android:progressDrawable">@drawable/ratingbar_cat</item>
+    </style>
+    <style name="FullHeightDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>

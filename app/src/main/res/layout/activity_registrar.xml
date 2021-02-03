@@ -21,11 +21,12 @@
             android:layout_height="wrap_content"
             android:hint="Número telefónico"
             android:inputType="phone"
-            android:text="3225645065"
+            android:text=""
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="34sp"
-            android:visibility="visible" />
+            android:visibility="visible"
+            />
 
         <EditText
             android:id="@+id/edtName"
@@ -33,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/white"
-            android:text="Tom"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="34sp"
 
@@ -46,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/white"
-            android:text="Tom"
+            android:text=""
             android:textColor="@color/white"
             android:inputType="textPassword"
             android:textSize="34sp"

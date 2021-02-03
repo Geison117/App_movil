@@ -48,25 +48,35 @@ public class Acceder extends AppCompatActivity {
                 table_user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                         dialogo.dismiss();
-                        if(snapshot.child(edtPhone.getText().toString()).exists()) {
-                            // Consigue la información del usuario
-                            Usuario usuario = snapshot.child(edtPhone.getText().toString()).getValue(Usuario.class);
-                            usuario.setTelefono(edtPhone.getText().toString());
-                            if (usuario.getContrasena().equals(edtPassword.getText().toString())) {
-                                Intent inicio = new Intent(Acceder.this, menu_inicio.class);
-                                Common.usuario = usuario;
-                                startActivity(inicio);
-                                finish();
-                                Toast.makeText(Acceder.this, "Acceso exitoso", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(Acceder.this, "Contraseña errónea", Toast.LENGTH_SHORT).show();
+                        if(!edtPhone.getText().toString().isEmpty()){
+                            if(snapshot.child(edtPhone.getText().toString()).exists()) {
+                                // Consigue la información del usuario
+                                Usuario usuario = snapshot.child(edtPhone.getText().toString()).getValue(Usuario.class);
+                                usuario.setTelefono(edtPhone.getText().toString());
+                                if(!edtPassword.getText().toString().isEmpty()){
+                                    if (usuario.getContrasena().equals(edtPassword.getText().toString())) {
+                                        Intent inicio = new Intent(Acceder.this, menu_inicio.class);
+                                        Common.usuario = usuario;
+                                        startActivity(inicio);
+                                        finish();
+                                        Toast.makeText(Acceder.this, "Acceso exitoso", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(Acceder.this, "Contraseña errónea", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                                else{
+                                    Toast.makeText(Acceder.this, "Ingrese una contraseña", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else{
+                                Toast.makeText(Acceder.this, "El usuario no existe", Toast.LENGTH_SHORT).show();
                             }
                         }
                         else{
-                            Toast.makeText(Acceder.this, "El usuario no existe", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Acceder.this, "Ingrese un usuario", Toast.LENGTH_SHORT).show();
                         }
+
                     }
 
                     @Override

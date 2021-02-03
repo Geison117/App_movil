@@ -15,14 +15,15 @@
         tools:replace="android:theme">
         <activity android:name=".OrderStatus"></activity>
         <activity android:name=".Canasta" />
-        <activity android:name=".DescripcionComida" />
+        <activity android:name=".DescripcionComida"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
         <activity android:name=".menu_comidas" />
         <activity
             android:name=".menu_inicio"
             android:label="@string/title_activity_menu_inicio"
             android:theme="@style/Theme.Pruebas1.NoActionBar" />
-        <activity android:name=".Registrar" />
-        <activity android:name=".Acceder" />
+        <activity android:name=".Registrar"/>
+        <activity android:name=".Acceder"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,5 +32,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
