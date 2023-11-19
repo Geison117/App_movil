@@ -17,27 +17,23 @@
 
         <EditText
             android:id="@+id/edtPhone"
-            android:hint="Número telefónico"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:textSize="34sp"
+            android:hint="Número telefónico"
             android:inputType="phone"
-            android:text="3224014785"
-            />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="34sp" />
 
         <EditText
             android:id="@+id/edtPassword"
-            android:hint="Contraseña"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:textSize="34sp"
+            android:hint="Contraseña"
             android:inputType="textPassword"
-            android:text="34425"
-            />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="34sp" />
 
     </LinearLayout>
 
